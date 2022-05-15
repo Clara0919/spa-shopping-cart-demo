@@ -1,5 +1,5 @@
 <template>
-    <div :class="[{border: has_border}, 'product-box']">
+    <div :class="[{border: has_border}, 'product-box']" @click="redirectProduct(id)">
       <div class="image-box">
         <img :src="parseImgPath(img_path)">
       </div>
