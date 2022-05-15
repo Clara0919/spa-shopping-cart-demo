@@ -1,5 +1,13 @@
 <template>
-  <div></div>
+    <div :class="[{border: has_border}, 'product-box']">
+      <div class="image-box">
+        <img :src="parseImgPath(img_path)">
+      </div>
+      <h4>{{brand}} <small>{{category}}</small></h4>
+      <h3>{{name}}</h3>
+      <p>售價: {{price}}</p>
+      <slot></slot>
+    </div>
 </template>
 <script>
 export default {

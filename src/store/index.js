@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    serverPath: 'http://13.112.235.199/',
+    serverPath: 'http://54.250.170.149/',
     userId: 12,
     cart: []
   },

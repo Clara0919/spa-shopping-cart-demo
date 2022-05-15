@@ -1,36 +1,33 @@
 <template>
   <div class="row">
-    <div class="product-box" v-for="product in products" :key="product.id">
-      <div class="image-box">
-        <img :src="parseImgPath(product.img_path)">
-      </div>
-      <h4>{{product.brand}} <small>{{product.category}}</small></h4>
-      <h3>{{product.name}}</h3>
-      <p>售價: {{product.price}}</p>
-    </div>
+    <template v-for="product in products">
+      <ProductBox v-bind="product" :has_border="true"></ProductBox>
+      <!-- <ProductBox :name="product.name" :brand="product.brand" :has_border="true"></ProductBox> -->
+    </template>
   </div>
 </template>
 <script>
 import axios from 'axios'
+import ProductBox from '../components/ProductBox.vue'
 
 export default {
-  data(){
-    return{
-      products:[],
+  data() {
+    return {
+      products: [],
       serverPath: this.$store.state.serverPath,
       userId: this.$store.state.userId
-    }
+    };
   },
   mounted() {
-    axios.get(`${this.serverPath}/products?user_id=${this.userId}`)
-         .then(res => this.products = res.data)
+      axios.get(`${this.serverPath}/products?user_id=${this.userId}`)
+          .then(res => this.products = res.data);
   },
-  methods:{
-    parseImgPath: function(path){
-      return this.$store.state.serverPath + path
-    }
-  }
-
+  methods: {
+      parseImgPath: function (path) {
+          return this.$store.state.serverPath + path;
+      }
+  },
+  components: { ProductBox }
 }
 
 </script>
