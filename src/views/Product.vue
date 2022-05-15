@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     addCart: function(product){
-      if(product.quantiy - this.number < 0){
+      if(product.quantity - this.number < 0){
         alert('存貨不足')
         return;
       }
