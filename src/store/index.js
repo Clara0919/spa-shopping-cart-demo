@@ -1,4 +1,5 @@
 import { createStore } from 'vuex'
+import createPersistedState from "vuex-persistedstate";
 
 export default createStore({
   state: {
@@ -8,11 +9,19 @@ export default createStore({
   },
   getters:{
     currentQuantiy(state){
+      // let sum = 0;
+      // for(var i = 0; i < state.cart.length; i++){
+      //   sum += state.cart[i].number
+      // }
+      // return sum
+
+      return state.cart.reduce((productNumber, product) => parseInt(productNumber) + product.number, 0)
     }
   },
   mutations: {
     addCart(state, data){
       let isNewProduct = true
+      // cart = [product, product]
       state.cart.map(function(product){
         if(product.id == data.product.id){
           product.number += data.number
@@ -27,5 +36,6 @@ export default createStore({
         state.cart.push(newProduct)
       }
     }
-  }
+  },
+  plugins: [createPersistedState()]
 })

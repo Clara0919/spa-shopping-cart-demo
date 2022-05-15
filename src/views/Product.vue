@@ -35,7 +35,10 @@ export default {
         return;
       }
       
-      // 
+      this.$store.commit('addCart', {
+        product: product,
+        number: this.number
+      })
       alert('已加入購物車')
     }
   }
